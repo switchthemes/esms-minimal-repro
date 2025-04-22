@@ -1,0 +1,6 @@
+.env
+.DS_Store
+*.sublime-workspace
+shopify.presets.toml
+shopify.theme.toml
+.shopify

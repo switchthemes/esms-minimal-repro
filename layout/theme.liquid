@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script type="esms-options">
+      {
+        "noLoadEventRetriggers": true
+      }
+    </script>
+
+    {% comment %}
+      MARK: Comment out this script tag to leave only Shopify’s copy
+      of the polyfill
+    {% endcomment %}
+    <script>
+      if (
+        !(HTMLScriptElement.supports && HTMLScriptElement.supports('importmap'))
+      ) {
+        const importMapShimScriptEl = document.createElement('script');
+        importMapShimScriptEl.src = '{{ 'es-module-shims.min.js' | asset_url }}'
+        importMapShimScriptEl.async = true;
+
+        document.currentScript.after(importMapShimScriptEl);
+      }
+    </script>
+    {% comment %}
+      END MARK: Comment out this script tag
+    {% endcomment %}
+
+    <script type="importmap">
+      {
+        "imports": {
+          "statically-imported-module": "{{ 'statically-imported-module.js' | asset_url }}",
+          "dynamically-imported-module": "{{ 'dynamically-imported-module.js' | asset_url }}"
+        }
+      }
+    </script>
+
+    <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
+
+    {{ content_for_header }}
+  </head>
+  <body>
+    <h2 style="text-align: center">
+      Statically imported module: <span id="static">not loaded</span>
+    </h2>
+    <h2 style="text-align: center">
+      Dynamically imported module: <span id="dynamic">not loaded</span>
+    </h2>
+    {{ content_for_layout }}
+  </body>
+</html>
