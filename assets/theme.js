@@ -1,4 +1,4 @@
-import 'statically-imported-module'
+import 'statically-imported-module';
 
 /**
  * The following lines replicate an implementation detail for a more exact
@@ -17,5 +17,3 @@ if (
 }
 
 importOrImportShim('dynamically-imported-module');
-
-
